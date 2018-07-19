@@ -3,7 +3,7 @@
     <div class="title clearfix">
       <h1 class="fl">小程序性能优化点</h1>
       <time class="fr">
-        <i class="icon-calendar icon iconfont"></i>
+        <i class="icon-calendar iconfont"></i>
         2018-07-17
       </time>
     </div>
@@ -14,7 +14,7 @@
         <li>操作反馈慢（点击，滑动）</li>
       </ul>
       <div class="see-more clearfix">
-        <i class="icon-tag iconfont icon fl tag"></i>
+        <i class="icon-tag iconfont fl tag"></i>
         <div class="tag-name fl">
           <span class="triangle_left">
           </span>
@@ -76,6 +76,9 @@ export default {
         li {
           margin-bottom: 10px;
           font-size: 14px;
+          &:last-child {
+            margin-bottom: 0px;
+          }
         }
       }
       .see-more {
@@ -84,7 +87,7 @@ export default {
           background: #94635c;
           line-height: 14px;
           border-radius: 2px;
-          padding: 3px 5px 3px 15px;
+          padding: 3px 5px 3px 16px;
           color: white;
           margin-left: 15px;
           position: relative;
@@ -92,11 +95,12 @@ export default {
             width: 4px;
             height: 4px;
             position: absolute;
-            left: 8px;
+            left: 6px;
             top:50%;
             margin-top: -2px;
             background: white;
             border-radius: 50%;
+            border: 1px solid #000;
           }
           .triangle_left {
             width:0;
@@ -114,6 +118,10 @@ export default {
         }
         .see-more-btn {
           cursor: pointer;
+          padding: 10px 10px;
+          background: #4d4d4d;
+          color: white;
+          margin-top: -5px;
         }
       }
     }

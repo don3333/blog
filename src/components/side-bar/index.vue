@@ -2,15 +2,15 @@
   <div class="side-bar">
     <div class="top"></div>
     <div class="bottom">
-      <div class="logo-box">
+      <div class="logo-box" @click="logoGo">
         <span class="logo"></span>
       </div>
       <div class="name">Stan</div>
       <div class="motto">既然大家都没本事，各走各路才是现实</div>
-      <div class="homepage">主页</div>
+      <router-link tag="div" class="homepage" :to="{path: '/'}">主页</router-link>
       <div class="essay">随笔</div>
       <div class="about-me">
-        <span>所有文章</span>/<span>关于我</span>
+        <router-link :to="{name: 'allPage'}" tag="span">所有文章</router-link>/<router-link :to="{name: 'aboutMe'}" tag="span">关于我</router-link>
       </div>
       <div>
         <span></span>
@@ -18,16 +18,16 @@
       </div>
       <ul class="clearfix contact-list">
         <li>
-          <i class="icon-github icon iconfont"></i>
+          <i class="icon-github iconfont"></i>
         </li>
         <li>
-          <i class="iconfont icon icon-zhihu0"></i>
+          <i class="iconfont icon-zhihu0"></i>
         </li>
         <li>
-          <i class="iconfont icon icon-qq"></i>
+          <i class="iconfont icon-qq"></i>
         </li>
         <li>
-          <i class="iconfont icon icon-weibo"></i>
+          <i class="iconfont icon-weibo"></i>
         </li>
       </ul>
     </div>
@@ -36,6 +36,17 @@
 
 <script>
 export default {
+  methods: {
+    logoGo () {
+      if (this.$route.name === 'pageList') {
+        this.$router.go(0)
+      } else {
+        this.$router.push({
+          name: 'pageList'
+        })
+      }
+    }
+  }
 }
 </script>
 
@@ -57,6 +68,7 @@ export default {
       position: relative;
       padding-top: 80px;
       .logo-box {
+        cursor: pointer;
         position: absolute;
         width: 118px;
         height: 118px;

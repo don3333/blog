@@ -1,6 +1,6 @@
 <template>
   <div>
-    查看全文
+    关于我
   </div>
 </template>
 
@@ -8,8 +8,6 @@
 export default {
   data () {
     return {}
-  },
-  created () {
   },
   methods: {},
   components: {}

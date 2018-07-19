@@ -1,6 +1,10 @@
 <template>
   <div class="page-list">
-    <list-item v-for="(item) in pageList" :key="item" style="margin-bottom: 20px;"></list-item>
+    <list-item
+      v-for="(item) in pageList"
+      :key="item"
+      style="margin-bottom: 20px;"
+    ></list-item>
   </div>
 </template>
 
