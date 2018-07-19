@@ -6,28 +6,24 @@
         <span class="logo"></span>
       </div>
       <div class="name">Stan</div>
-      <div class="motto">既然大家都没本事，各走各路才是现实</div>
+      <div class="motto">既然大家都没本事，各走各路才是现实。</div>
       <router-link tag="div" class="homepage" :to="{path: '/'}">主页</router-link>
       <div class="essay">随笔</div>
       <div class="about-me">
         <router-link :to="{name: 'allPage'}" tag="span">所有文章</router-link>/<router-link :to="{name: 'aboutMe'}" tag="span">关于我</router-link>
       </div>
-      <div>
-        <span></span>
-        <span></span>
-      </div>
       <ul class="clearfix contact-list">
         <li>
-          <i class="icon-github iconfont"></i>
+          <a href="https://github.com/qixuelong" target= _blank><i class="icon-github iconfont"></i></a>
         </li>
         <li>
-          <i class="iconfont icon-zhihu0"></i>
+          <a href="#"><i class="iconfont icon-zhihu0"></i></a>
         </li>
         <li>
-          <i class="iconfont icon-qq"></i>
+          <a href="#"><i class="iconfont icon-qq"></i></a>
         </li>
         <li>
-          <i class="iconfont icon-weibo"></i>
+          <a href="https://weibo.com/u/2250639560" target="_blank"><i class="iconfont icon-weibo"></i></a>
         </li>
       </ul>
     </div>
@@ -120,9 +116,15 @@ export default {
           &:first-child {
             margin: 0px;
           }
-          i{
-            cursor: pointer;
-            font-size: 26px;
+          a{
+            transition: 1s all ease;
+            i{
+              cursor: pointer;
+              font-size: 26px;
+            }
+            &:hover {
+              color: #006666;
+            }
           }
         }
       }
