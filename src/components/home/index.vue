@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div class="home clearfix">
+    <side-bar class="side-bar fl"></side-bar>
+    <router-view class="content fl"/>
   </div>
 </template>
 
@@ -19,4 +20,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .home {
+    height: 100%;
+    .side-bar {
+    }
+    .content {
+      margin: 20px 20px 20px 320px;
+    }
+  }
 </style>

@@ -7,7 +7,7 @@
         2018-07-17
       </time>
     </div>
-    <div class="cotent">
+    <div class="content">
       <ul class="introduction">
         <li>首屏白屏时间长</li>
         <li>加载loading时间长</li>
@@ -36,7 +36,10 @@ export default {
   methods: {
     go () {
       this.$router.push({
-        name: 'pageDetail'
+        name: 'pageDetail',
+        params: {
+          id: 1
+        }
       })
     }
   },
@@ -60,7 +63,7 @@ export default {
         margin-top: 8px;
       }
     }
-    .cotent {
+    .content {
       margin: 20px 7.6923% 0px;
       .introduction {
         padding: 20px 0;

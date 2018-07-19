@@ -1,6 +1,7 @@
 <template>
   <div>
-    {{$route.params.id}}
+    404 找不到该页面
+    <button @click="$router.push('/home/pagelist')">跳回首页</button>
   </div>
 </template>
 
@@ -8,8 +9,6 @@
 export default {
   data () {
     return {}
-  },
-  created () {
   },
   methods: {},
   components: {}
