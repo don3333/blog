@@ -2,32 +2,28 @@
   <div class="side-bar">
     <div class="top"></div>
     <div class="bottom">
-      <div class="logo-box">
+      <div class="logo-box" @click="logoGo">
         <span class="logo"></span>
       </div>
       <div class="name">Stan</div>
-      <div class="motto">既然大家都没本事，各走各路才是现实</div>
-      <div class="homepage">主页</div>
+      <div class="motto">既然大家都没本事，各走各路才是现实。</div>
+      <router-link tag="div" class="homepage" :to="{path: '/'}">主页</router-link>
       <div class="essay">随笔</div>
       <div class="about-me">
-        <span>所有文章</span>/<span>关于我</span>
-      </div>
-      <div>
-        <span></span>
-        <span></span>
+        <router-link :to="{name: 'allPage'}" tag="span">所有文章</router-link>/<router-link :to="{name: 'aboutMe'}" tag="span">关于我</router-link>
       </div>
       <ul class="clearfix contact-list">
         <li>
-          <i class="icon-github icon iconfont"></i>
+          <a href="https://github.com/qixuelong" target= _blank><i class="icon-github iconfont"></i></a>
         </li>
         <li>
-          <i class="iconfont icon icon-zhihu0"></i>
+          <a href="#"><i class="iconfont icon-zhihu0"></i></a>
         </li>
         <li>
-          <i class="iconfont icon icon-qq"></i>
+          <a href="#"><i class="iconfont icon-qq"></i></a>
         </li>
         <li>
-          <i class="iconfont icon icon-weibo"></i>
+          <a href="https://weibo.com/u/2250639560" target="_blank"><i class="iconfont icon-weibo"></i></a>
         </li>
       </ul>
     </div>
@@ -36,6 +32,22 @@
 
 <script>
 export default {
+  data () {
+    return {
+      flag: true
+    }
+  },
+  methods: {
+    logoGo () {
+      if (this.$route.name === 'pageList') {
+        this.$router.go(0)
+      } else {
+        this.$router.push({
+          name: 'pageList'
+        })
+      }
+    }
+  }
 }
 </script>
 
@@ -57,6 +69,7 @@ export default {
       position: relative;
       padding-top: 80px;
       .logo-box {
+        cursor: pointer;
         position: absolute;
         width: 118px;
         height: 118px;
@@ -108,9 +121,15 @@ export default {
           &:first-child {
             margin: 0px;
           }
-          i{
-            cursor: pointer;
-            font-size: 26px;
+          a{
+            @include transition;
+            i{
+              cursor: pointer;
+              font-size: 26px;
+            }
+            &:hover {
+              color: #006666;
+            }
           }
         }
       }

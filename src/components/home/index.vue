@@ -1,7 +1,9 @@
 <template>
-  <div class="home clearfix">
-    <side-bar class="side-bar fl"></side-bar>
-    <router-view class="content fl"/>
+  <div class="home">
+    <side-bar class="side-bar"></side-bar>
+    <!--<transition name="toggle">-->
+    <router-view class="content"/>
+    <!--</transition>-->
   </div>
 </template>
 
@@ -10,7 +12,8 @@ import SideBar from 'com/side-bar'
 export default {
   data () {
     return {
-      name: ''
+      name: '',
+      flag: true
     }
   },
   components: {
@@ -23,6 +26,12 @@ export default {
   .home {
     height: 100%;
     .side-bar {
+    }
+    .toggle-enter-active, .toggle-leave-active{
+      transition: all 1s ease;
+    }
+    .toggle-enter, .toggle-leave-to {
+      opacity: 0;
     }
     .content {
       margin: 20px 20px 20px 320px;
