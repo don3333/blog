@@ -45,5 +45,8 @@ export default new Router({
       path: '*',
       component: Page404
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return {y: 0}
+  }
 })

@@ -61,6 +61,7 @@ export default {
       time {
         margin-right: 7.6923% ;
         margin-top: 8px;
+        color: #999;
       }
     }
     .content {

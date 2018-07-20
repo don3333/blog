@@ -32,6 +32,11 @@
 
 <script>
 export default {
+  data () {
+    return {
+      flag: true
+    }
+  },
   methods: {
     logoGo () {
       if (this.$route.name === 'pageList') {
@@ -117,7 +122,7 @@ export default {
             margin: 0px;
           }
           a{
-            transition: 1s all ease;
+            @include transition;
             i{
               cursor: pointer;
               font-size: 26px;
