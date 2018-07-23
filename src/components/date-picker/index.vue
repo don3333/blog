@@ -1,4 +1,3 @@
-<!--suppress ALL -->
 <template>
   <div class="date-picker">
     <div class="header clearfix">
@@ -8,19 +7,19 @@
     </div>
     <div class="date-body">
       <ul class="clearfix">
-        <li>一</li>
+        <li class="redColor">一</li>
         <li>二</li>
         <li>三</li>
         <li>四</li>
         <li>五</li>
         <li>六</li>
-        <li>日</li>
+        <li class="redColor">日</li>
       </ul>
       <ul class="clearfix">
         <li
           v-for="(item, index) in dateArr"
           :key="index"
-          :class="{disabled: item.disabled, active:+splitDate[2] === item.day &&  item.month === 'this'}"
+          :class="{disabled: item.disabled, active:+splitDate[2] === item.day &&  item.month === 'this', redColor:index%7 === 0 || index% 7 === 6}"
           @click="dateClick(item)"
         >{{item.day}}</li>
       </ul>
@@ -33,7 +32,7 @@ export default {
   props: {
     date: {
       type: String,
-      default: '2018-07-28'
+      default: '1992-07-25'
     }
   },
   data () {
@@ -43,10 +42,8 @@ export default {
       nowDate: this.date
     }
   },
-  components: {},
   created () {
     this.dateArr = this._ret(this.splitDate[0], this.splitDate[1])
-    console.log(new Date(2018, 7, 1).getDay())
   },
   methods: {
     _getFirstDayDate (year, month) {
@@ -75,15 +72,14 @@ export default {
           })
         }
       } else {
-        for (var i = prevMonthDay - firstDate + 2; i <= prevMonthDay; i++) {
+        for (var b = prevMonthDay - firstDate + 2; b <= prevMonthDay; b++) {
           ret.push({
-            day: i,
+            day: b,
             disabled: true,
             month: 'prev'
           })
         }
       }
-
       for (var j = 1; j <= thisMonthDay; j++) {
         ret.push({
           day: j,
@@ -179,6 +175,7 @@ export default {
   .date-picker {
     border: 1px solid #97a8be;
     width: 300px;
+    margin: 150px auto 0;
     .header {
       padding: 0px 10px;
       line-height: 50px;
@@ -188,6 +185,9 @@ export default {
       .prev, .next {
         color: #97a8be;
         cursor: pointer;
+        &:hover {
+          color: #008800;
+        }
       }
     }
     .date-body {
@@ -206,8 +206,13 @@ export default {
             color: gray;
           }
           &.active {
-            background: yellow;
+            background: #fb0;
             color: #fff;
+          }
+          @at-root {
+            .redColor {
+              color: red;
+            }
           }
         }
       }
