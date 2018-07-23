@@ -6,6 +6,7 @@ import router from './router'
 import '@/common/css/index.scss'
 import '@/common/font-icon/iconfont.css'
 import store from './store'
+import '@/common/js/vueLazy'
 
 Vue.config.productionTip = false
 
