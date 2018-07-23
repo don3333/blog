@@ -6,7 +6,6 @@ import Page404 from 'com/page-404'
 import Home from 'com/home'
 import AboutMe from 'com/about-me'
 import AllPage from 'com/all-page'
-import Test from 'com/test'
 import DatePicker from 'com/date-picker'
 Vue.use(Router)
 
@@ -15,10 +14,6 @@ export default new Router({
     {
       path: '/',
       redirect: '/home/'
-    },
-    {
-      path: '/test',
-      component: Test
     },
     {
       path: '/datepicker',
