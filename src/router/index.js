@@ -7,6 +7,7 @@ import Home from 'com/home'
 import AboutMe from 'com/about-me'
 import AllPage from 'com/all-page'
 import Test from 'com/test'
+import DatePicker from 'com/date-picker'
 Vue.use(Router)
 
 export default new Router({
@@ -18,6 +19,10 @@ export default new Router({
     {
       path: '/test',
       component: Test
+    },
+    {
+      path: '/datepicker',
+      component: DatePicker
     },
     {
       path: '/home',
