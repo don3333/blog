@@ -1,28 +1,35 @@
 <template>
-  <div class="date-picker">
-    <div class="header clearfix">
-      <span class="prev fl" @click="prev()">&lt;</span>
-      {{nowDate}}
-      <span class="next fr" @click="next()">&gt;</span>
+  <div>
+    <div class="date-picker">
+      <div class="header clearfix">
+        <span class="prev fl" @click="prev()">&lt;</span>
+        <span v-if="!dateList.length">{{nowDate}}</span>
+        <span class="next fr" @click="next()">&gt;</span>
+      </div>
+      <div class="date-body">
+        <ul class="clearfix">
+          <li class="redColor">一</li>
+          <li>二</li>
+          <li>三</li>
+          <li>四</li>
+          <li>五</li>
+          <li>六</li>
+          <li class="redColor">日</li>
+        </ul>
+        <ul class="clearfix">
+          <li
+            v-for="(item, index) in dateArr"
+            :key="index"
+            :class="{disabled: item.disabled, active:active(item), redColor:index%7 === 0 || index% 7 === 6}"
+            @click="dateClick(item)"
+          >{{item.day}}</li>
+        </ul>
+      </div>
     </div>
-    <div class="date-body">
-      <ul class="clearfix">
-        <li class="redColor">一</li>
-        <li>二</li>
-        <li>三</li>
-        <li>四</li>
-        <li>五</li>
-        <li>六</li>
-        <li class="redColor">日</li>
-      </ul>
-      <ul class="clearfix">
-        <li
-          v-for="(item, index) in dateArr"
-          :key="index"
-          :class="{disabled: item.disabled, active:+splitDate[2] === item.day &&  item.month === 'this', redColor:index%7 === 0 || index% 7 === 6}"
-          @click="dateClick(item)"
-        >{{item.day}}</li>
-      </ul>
+    <div class="resultWarp">
+      <span v-for="(item, index) in dateListTest()" :key="index">
+        {{item}}<span v-if="index !== dateListTest().length - 1">,</span>
+      </span>
     </div>
   </div>
 </template>
@@ -33,19 +40,42 @@ export default {
     date: {
       type: String,
       default: '1992-07-25'
+    },
+    dateList: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    isCheckbox: {
+      type: Boolean,
+      default: true
+    },
+    maxLen: {
+      type: Number,
+      default: 5
     }
   },
   data () {
     return {
       dateArr: [
       ],
-      nowDate: this.date
+      nowDate: this.date,
+      json: {}
     }
   },
   created () {
     this.dateArr = this._ret(this.splitDate[0], this.splitDate[1])
   },
   methods: {
+    active (item) {
+      if (this.isCheckbox) {
+        let day = this.nowDate.substring(0, 8) + (item.day < 10 ? '0' + item.day : item.day)
+        return item.month === 'this' && this.dateListTest().indexOf(day) >= 0
+      } else {
+        return item.month === 'this' && item.day === +this.splitDate[2]
+      }
+    },
     _getFirstDayDate (year, month) {
       let oDate = new Date(year, month, 1)
       return oDate.getDay()
@@ -160,7 +190,28 @@ export default {
         }
       }
       this.nowDate = splitDateArr.join('-')
+      if (this.isCheckbox) {
+        if (this.json[splitDateArr.join('-')]) {
+          delete this.json[splitDateArr.join('-')]
+        } else {
+          if (this.dateListTest().length >= this.maxLen) {
+            return
+          }
+          this.json[splitDateArr.join('-')] = 1
+        }
+        this.$emit('click', this.dateListTest)
+      } else {
+        this.$emit('click', this.nowDate)
+      }
+      console.log(this.dateListTest(), this.nowDate)
       this.dateArr = this._ret(this.splitDate[0], this.splitDate[1])
+    },
+    dateListTest () {
+      let ret = []
+      for (var key in this.json) {
+        ret.push(key)
+      }
+      return ret
     }
   },
   computed: {
@@ -212,6 +263,10 @@ export default {
           @at-root {
             .redColor {
               color: red;
+            }
+            .resultWarp {
+              margin-top: 20px;
+              text-align: center;
             }
           }
         }
